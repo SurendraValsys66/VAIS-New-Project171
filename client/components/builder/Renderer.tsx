@@ -300,9 +300,8 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
             className="text-5xl lg:text-7xl font-black text-gray-900 tracking-tight leading-none max-w-4xl"
             contentEditable
             suppressContentEditableWarning
-          >
-            Build your vision <span className="text-blue-600">faster</span> than ever.
-          </h1>
+            dangerouslySetInnerHTML={{ __html: 'Build your vision <span class="text-blue-600">faster</span> than ever.' }}
+          />
           <p
             className="text-xl text-gray-600 max-w-2xl leading-relaxed"
             contentEditable
@@ -329,10 +328,10 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
       return wrapWithControls(
         <div className="p-12 bg-gray-50/50 rounded-3xl border border-gray-100">
           <div className="text-center mb-16 space-y-4">
-            <h2 className="text-3xl font-bold text-gray-900" contentEditable>
+            <h2 className="text-3xl font-bold text-gray-900" contentEditable suppressContentEditableWarning>
               Everything you need to scale
             </h2>
-            <p className="text-gray-600 max-w-xl mx-auto" contentEditable>
+            <p className="text-gray-600 max-w-xl mx-auto" contentEditable suppressContentEditableWarning>
               Powerful tools designed to help you grow your business and reach your goals faster.
             </p>
           </div>
@@ -342,10 +341,10 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
                 <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold">
                   0{i}
                 </div>
-                <h3 className="text-xl font-bold" contentEditable>
-                  Feature Item {i}
+                <h3 className="text-xl font-bold" contentEditable suppressContentEditableWarning>
+                  {`Feature Item ${i}`}
                 </h3>
-                <p className="text-sm text-gray-500 leading-relaxed" contentEditable>
+                <p className="text-sm text-gray-500 leading-relaxed" contentEditable suppressContentEditableWarning>
                   Explain how this feature solves a real problem for your users.
                 </p>
               </div>
@@ -358,8 +357,8 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
       return wrapWithControls(
         <div className="p-12 bg-white rounded-3xl border border-gray-100">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-black mb-4">Simple, transparent pricing</h2>
-            <p className="text-gray-500">Choose the plan that's right for you.</p>
+            <h2 className="text-3xl font-black mb-4" contentEditable suppressContentEditableWarning>Simple, transparent pricing</h2>
+            <p className="text-gray-500" contentEditable suppressContentEditableWarning>Choose the plan that's right for you.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {["Starter", "Pro", "Enterprise"].map((plan, i) => (
@@ -376,7 +375,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
                   </span>
                 )}
                 <div>
-                  <h3 className="text-xl font-bold mb-1">{plan}</h3>
+                  <h3 className="text-xl font-bold mb-1" contentEditable suppressContentEditableWarning>{plan}</h3>
                   <div className="flex items-baseline gap-1">
                     <span className="text-4xl font-black">${[19, 49, 99][i]}</span>
                     <span className="text-gray-400 text-sm">/mo</span>
@@ -385,7 +384,8 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
                 <ul className="space-y-3 flex-1">
                   {[1, 2, 3, 4].map((j) => (
                     <li key={j} className="flex items-center gap-3 text-sm text-gray-600">
-                      <Check className="w-4 h-4 text-green-500" /> Benefit number {j}
+                      <Check className="w-4 h-4 text-green-500" />
+                      <span contentEditable suppressContentEditableWarning>{`Benefit number ${j}`}</span>
                     </li>
                   ))}
                 </ul>
@@ -413,7 +413,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
                 <Star key={s} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
               ))}
             </div>
-            <p className="text-2xl font-bold max-w-3xl leading-snug italic" contentEditable>
+            <p className="text-2xl font-bold max-w-3xl leading-snug italic" contentEditable suppressContentEditableWarning>
               "This platform has completely transformed how we build and launch pages. It's
               incredibly intuitive and powerful at the same time."
             </p>
@@ -422,10 +422,10 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
                 <img src="https://i.pravatar.cc/150?u=jane" alt="Jane" />
               </div>
               <div>
-                <div className="font-bold text-lg" contentEditable>
+                <div className="font-bold text-lg" contentEditable suppressContentEditableWarning>
                   Jane Cooper
                 </div>
-                <div className="text-blue-200 text-sm" contentEditable>
+                <div className="text-blue-200 text-sm" contentEditable suppressContentEditableWarning>
                   CEO at TechFlow
                 </div>
               </div>
@@ -437,7 +437,7 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
     case "logo-cloud":
       return wrapWithControls(
         <div className="p-12 bg-white rounded-3xl border border-gray-100 flex flex-col items-center gap-12">
-          <p className="text-sm font-bold text-gray-400 uppercase tracking-widest">
+          <p className="text-sm font-bold text-gray-400 uppercase tracking-widest" contentEditable suppressContentEditableWarning>
             Trusted by the world's most innovative teams
           </p>
           <div className="flex flex-wrap justify-center gap-x-12 gap-y-8 opacity-40 grayscale">
@@ -453,17 +453,17 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
     case "faq":
       return wrapWithControls(
         <div className="p-12 bg-gray-50 rounded-3xl border border-gray-100 max-w-4xl mx-auto w-full">
-          <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+          <h2 className="text-3xl font-bold text-center mb-12" contentEditable suppressContentEditableWarning>Frequently Asked Questions</h2>
           <div className="space-y-4">
             {[1, 2, 3, 4].map((f) => (
               <div key={f} className="bg-white rounded-2xl border border-gray-100 p-6">
                 <div className="flex items-center justify-between gap-4">
-                  <span className="font-bold text-lg" contentEditable>
+                  <span className="font-bold text-lg" contentEditable suppressContentEditableWarning>
                     What is the pricing structure for larger teams?
                   </span>
                   <ChevronDown className="w-5 h-5 text-gray-400" />
                 </div>
-                <div className="mt-4 text-gray-500 text-sm leading-relaxed" contentEditable>
+                <div className="mt-4 text-gray-500 text-sm leading-relaxed" contentEditable suppressContentEditableWarning>
                   We offer custom enterprise pricing for teams larger than 50 people. Contact our
                   sales team for a personalized quote.
                 </div>
@@ -476,10 +476,10 @@ export const ComponentRenderer: React.FC<RendererProps> = ({
     case "cta":
       return wrapWithControls(
         <div className="p-16 bg-gradient-to-tr from-gray-900 to-blue-900 rounded-3xl text-white text-center flex flex-col items-center gap-8">
-          <h2 className="text-4xl font-black" contentEditable>
+          <h2 className="text-4xl font-black" contentEditable suppressContentEditableWarning>
             Ready to start building?
           </h2>
-          <p className="text-blue-100 max-w-xl" contentEditable>
+          <p className="text-blue-100 max-w-xl" contentEditable suppressContentEditableWarning>
             Join over 10,000+ creators and start building your landing pages today. No credit card
             required.
           </p>
